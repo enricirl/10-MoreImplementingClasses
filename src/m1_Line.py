@@ -91,6 +91,9 @@ class Point(object):
         self.x = x
         self.y = y
 
+
+
+
     def __repr__(self):
         """
         Returns a string representation of this Point.
@@ -178,6 +181,9 @@ class Line(object):
     """ Represents a line segment in 2-dimensional space. """
 
     def __init__(self, start, end):
+        self.originalstart = start
+        self.originalend = end
+        self.copies = 0
         """
         What comes in:
           -- self
@@ -299,6 +305,7 @@ class Line(object):
         return (self.start == line2.start) and (self.end == line2.end)
 
     def clone(self):
+        self.copies = self.copies +1
         """
         What comes in:
           -- self
@@ -486,7 +493,7 @@ class Line(object):
           :rtype: int:
         """
         # ---------------------------------------------------------------------
-        # TODO: 8.
+        # Done: 8.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -494,7 +501,7 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
-        return self.total_clones
+        return self.copies
 
 
     def line_plus(self, other_line):
@@ -714,9 +721,9 @@ class Line(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
-        self.start = self.firststart
-        self.end = self.firstend
-        return Line(self.start, self.end)
+        self.start = self.originalstart
+        self.end = self.originalend
+
 
 ###############################################################################
 # The TEST functions for the  Line  class begin here.
